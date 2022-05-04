@@ -1,7 +1,7 @@
 var canvas = document.getElementById("canvas-main");
 
-canvas.width = window.innerWidth; // ширина холста занимает всю ширину экрана
-canvas.height = window.innerHeight; // высота холста занимает всю высоту экрана
+canvas.width = window.innerWidth; 
+canvas.height = window.innerHeight; 
 
 var WIDTH = canvas.width;
 var HEIGHT = canvas.height;
@@ -17,28 +17,27 @@ function createRegion() {
     regionW = 20;
     regionH = 20;
 }
-// Сразу же вызываем эту функцию
+// Відразу викликаємо цю функцію
 createRegion();
 function update() {
-    // Очищаем холст
     ctx.clearRect(0,0,WIDTH,HEIGHT);
 
-    // Отрисовываем прямоугольник
+    // вимальовуємо прямокутник
     ctx.fillStyle="green";
     ctx.fillRect(regionX,regionY,regionW,regionH);
-        // Выводим количество очков
+        // вивід кількості балів
         ctx.font = "20px Arial"
         ctx.fillStyle="white";
         ctx.fillText(score,30,40);
 }
-// Объявляем переменную с кадрами, вначале их 0
+
 var frames = 0;
 setInterval(function () {
     if(isGameOver===false){
-    frames++; // увеличиваем количество кадров на 1
-    if(frames%25==0) { // Если прошло 25 кадров, то
-        time = time + 1;// Увеличили время
-        checkTime();  // Проверили, не закончилось ли оно
+    frames++; 
+    if(frames%25==0) { 
+        time = time + 1;
+        checkTime(); 
     }
     update();
 } else {
@@ -56,7 +55,6 @@ document.onmousedown = function(event) {
 
     if(mouseX>=regionX && mouseX<=regionX+regionW) {
         if(mouseY>=regionY && mouseY<=regionY+regionH) {
-            // Если попали мышкой по региону, то генерируем новый регион
             createRegion();
             score = score + 1;
         }
@@ -64,7 +62,7 @@ document.onmousedown = function(event) {
 }
 function checkTime() {
     if(time>=10) {
-        alert("Game over! You have " + score + " scores!");
+        alert("Гра закінчена( Ти отримав " + score + " балів!");
         isGameOver=true;
     }
 }
